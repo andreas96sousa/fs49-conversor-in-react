@@ -1,0 +1,46 @@
+/* #form-conversor {
+    background-color: rgb(233, 255, 219);
+    width: 30%;
+    height: 80%;
+    border-radius: 0.7rem;
+    filter: drop-shadow(0 0 1.2rem rgb(0, 247, 255));
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 2rem;
+    justify-content: space-around;
+
+    h1 {
+        text-align: center;
+    }
+
+    label {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        display: block;
+        font-weight: 600;
+    }
+
+
+    .valueBox {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+
+    }
+
+    #box-value {
+        width: 80%;
+        height: 2rem;
+        text-align: center;
+
+    }
+
+    .moedas {
+        display: flex;
+        justify-content: space-between;
+        select{
+            text-align: center;
+             
+        }
+    }
+} */
