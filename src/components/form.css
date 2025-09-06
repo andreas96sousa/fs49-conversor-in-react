@@ -5,7 +5,7 @@
 }
 
 @keyframes girar {
-  0% {
+  0% { 
     transform: rotate(0deg) scale(1);
   }
   50% {
