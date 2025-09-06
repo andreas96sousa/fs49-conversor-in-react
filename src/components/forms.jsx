@@ -1,16 +1,12 @@
 import "./form.css";
 import logo from "../assets/react.svg";
+import { useState } from "react";
 
-conversor.addEventListener("click", () => {
-    const valorInserido = parseFloat(valor.value);
-  });
-  
 function Form() {
-  const valor = document.querySelector("#valor");
-  const de = document.querySelector("#de");
-  const para = document.querySelector("#para");
-  const switchButton = document.querySelector("#switch");
-  const conversor = document.querySelector("#conversor");
+  const [valor, setValor] = useState();
+  const [de, setDe] = useState("");
+  const [para, setPara] = useState("");
+  const [resultado, setResultado] = useState("Digite um valor válido!");
 
   const taxas = {
     brl: { brl: 1, usd: 0.18, eur: 0.16 },
@@ -20,39 +16,54 @@ function Form() {
     eur: { brl: 6.37, usd: 1.16, eur: 1 },
   };
 
-  
-  function converter() {}
+  function converter() {
+    if (!valor || isNaN(valor)) {
+      setResultado("Digite um valor válido!");
+      return;
+    }
 
-  function switchSelector() {}
+    const convertido = (valor * taxas[de][para]).toFixed(2);
+    setResultado(`${valor} ${de.toUpperCase()} = ${convertido} ${para.toUpperCase()}`);
+  }
 
+ function trocarMoedas() {
+    setDe(para);
+    setPara(de);
+  }
   return (
     <>
       <main>
         <form>
           <h1>Conversor de Moedas</h1>
 
-          <div class="caixa-valor">
-            <label for="valor">Insira o valor:</label>
-            <input type="number" id="valor" />
+          <div className="caixa-valor">
+            <label htmlFor="valor">Insira o valor:</label>
+            <input type="number" id="valor" value={valor} onChange={
+              (e) => setValor(parseFloat(e.target.value))
+            }/>
           </div>
 
-          <div class="caixa-moedas">
-            <div class="moeda">
-              <label for="de">De</label>
-              <select id="de">
+          <div className="caixa-moedas">
+            <div className="moeda">
+              <label htmlFor="de">De</label>
+              <select id="de" value={de} onChange={
+                (e) => setDe(e.target.value)
+              }>
                 <option value="brl">BRL</option>
                 <option value="usd">USD</option>
                 <option value="eur">EUR</option>
               </select>
             </div>
 
-            <button type="button" id="switch">
+            <button type="button" id="switch" onClick={trocarMoedas}>
               <img src={logo} />
             </button>
 
-            <div class="moeda">
-              <label for="para">Para</label>
-              <select id="para">
+            <div className="moeda">
+              <label htmlFor="para">Para</label>
+              <select id="para" value={para} onChange={
+                (e) => setPara(e.target.value)
+              }>
                 <option value="brl">BRL</option>
                 <option value="usd">USD</option>
                 <option value="eur">EUR</option>
@@ -60,9 +71,9 @@ function Form() {
             </div>
           </div>
 
-          <span id="resultado">Digite um valor válido!</span>
+          <span id="resultado">{resultado}</span>
 
-          <button type="button" id="conversor">
+          <button onClick={converter} type="button" id="conversor">
             Converter
           </button>
         </form>
